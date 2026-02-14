@@ -283,7 +283,15 @@
         }
 
         // Start
-        currentPhoto = allPhotos[Math.floor(Math.random() * allPhotos.length)];
+        const urlParams = new URLSearchParams(window.location.search);
+        const imgParam = urlParams.get('img');
+        
+        if (imgParam && allPhotos.includes(imgParam)) {
+            currentPhoto = imgParam;
+        } else {
+            currentPhoto = allPhotos[Math.floor(Math.random() * allPhotos.length)];
+        }
+        
         document.getElementById('hint-overlay').style.backgroundImage = `url('images/${currentPhoto}')`;
         setDifficulty(3);
     </script>

@@ -171,6 +171,7 @@
     <div id="lightbox">
         <span class="close-lb">&times;</span>
         <img id="lb-img" src="" alt="">
+        <button id="lb-puzzle-btn" onclick="startPuzzleFromLightbox()" style="position: absolute; bottom: 40px; background: rgba(255,255,255,0.9); border: none; padding: 12px 25px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: inherit; color: #5d5d5d;">🧩 挑戰這張拼圖</button>
     </div>
 
     <footer>
@@ -225,7 +226,9 @@
                 div.className = 'item';
                 div.innerHTML = `<img src="images/${photo}" loading="lazy">`;
                 div.onclick = () => {
-                    lbImg.src = `images/${photo}`;
+                    const filename = photo;
+                    lbImg.src = `images/${filename}`;
+                    lbImg.dataset.filename = filename; // 存儲檔名
                     lightbox.style.display = 'flex';
                 };
                 gallery.appendChild(div);
@@ -233,6 +236,13 @@
             currentIndex += batchSize;
             if (currentIndex >= allPhotos.length) {
                 sentinel.innerText = "已加載完所有珍貴回憶 ✨";
+            }
+        }
+
+        function startPuzzleFromLightbox() {
+            const filename = lbImg.dataset.filename;
+            if (filename) {
+                window.location.href = `puzzle.html?img=${encodeURIComponent(filename)}`;
             }
         }
 
