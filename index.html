@@ -135,12 +135,26 @@
             cursor: pointer; z-index: 1000; font-size: 2rem;
             border: 2px solid #eee;
         }
+
+        /* 遊戲入口入口 */
+        #game-entrance {
+            position: fixed; bottom: 110px; right: 30px;
+            background: #d8b4a0; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer; z-index: 1000; font-size: 2rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        #game-entrance:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <div id="yt-player" style="position: absolute; top: -9999px; left: -9999px;"></div>
     <div id="audio-control" onclick="toggleAudio()">⏳</div>
+
+    <a href="puzzle.html" id="game-entrance" title="進入回憶拼圖">🧩</a>
 
     <header>
         <h1>珍貴回憶錄</h1>
