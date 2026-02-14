@@ -220,7 +220,10 @@
                     const row = Math.floor(tileIndex / size);
                     const col = tileIndex % size;
                     tile.style.backgroundPosition = `${(col / (size - 1)) * 100}% ${(row / (size - 1)) * 100}%`;
-                    tile.onclick = () => moveTile(position);
+                    
+                    // 同時支援點擊與觸控
+                    tile.onclick = (e) => { e.preventDefault(); moveTile(position); };
+                    tile.ontouchstart = (e) => { e.preventDefault(); moveTile(position); };
                 }
                 container.appendChild(tile);
             });
